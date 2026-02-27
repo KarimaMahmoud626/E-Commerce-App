@@ -1,5 +1,5 @@
 import { View, StyleSheet, Text } from "react-native";
-import { Component, useState } from "react";
+import { useState } from "react";
 import CustomTextInput from "../../components/CustomTextInput";
 import CustomButton from "../../components/CustomButton";
 
@@ -61,10 +61,8 @@ export default function SignUpScreen() {
             ? require("../../../assets/eye-password-hide.png")
             : require("../../../assets/eye-password-show.png")
         }
-        style={passwordError ? { borderColor: "red", borderWidth: 2 } : {}}
-      >
-        {passwordError && <Text style={{ color: "red" }}>not match</Text>}
-      </CustomTextInput>
+        onError={passwordError}
+      />
 
       <View style={styles.sizedBox}></View>
 
