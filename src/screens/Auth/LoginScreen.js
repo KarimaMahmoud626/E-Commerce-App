@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { useState } from "react";
 import CustomTextInput from "../../components/CustomTextInput";
 import CustomButton from "../../components/CustomButton";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function LoginScreen() {
   const navigation = useNavigation();
@@ -11,50 +12,58 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Enter your Credentials</Text>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.title}>Enter your Credentials</Text>
 
-      <CustomTextInput
-        placeholder="Email"
-        keyboardType="email-address"
-        onChangeText={(email) => setEmail(email)}
-        value={email}
-        icon={require("../../../assets/email-icon.jpg")}
-      />
+        <CustomTextInput
+          placeholder="Email"
+          keyboardType="email-address"
+          onChangeText={(email) => setEmail(email)}
+          value={email}
+          icon={require("../../../assets/email-icon.jpg")}
+        />
 
-      <CustomTextInput
-        placeholder="Password"
-        secureTextEntry={isHide}
-        onChangeText={(password) => setPassword(password)}
-        value={password}
-        icon={require("../../../assets/lock.png")}
-        postIconPress={() => {
-          setIsHide(!isHide);
-        }}
-        postIcon={
-          isHide
-            ? require("../../../assets/eye-password-hide.png")
-            : require("../../../assets/eye-password-show.png")
-        }
-      />
+        <CustomTextInput
+          placeholder="Password"
+          secureTextEntry={isHide}
+          onChangeText={(password) => setPassword(password)}
+          value={password}
+          icon={require("../../../assets/lock.png")}
+          postIconPress={() => {
+            setIsHide(!isHide);
+          }}
+          postIcon={
+            isHide
+              ? require("../../../assets/eye-password-hide.png")
+              : require("../../../assets/eye-password-show.png")
+          }
+        />
 
-      <CustomButton title="Login" onPress={() => navigation.navigate("Home")} />
+        <CustomButton
+          title="Login"
+          onPress={() => navigation.navigate("Home")}
+        />
 
-      <Text style={styles.text}>--- Or ---</Text>
+        <Text style={styles.text}>--- Or ---</Text>
 
-      <CustomButton
-        title="Login with Google"
-        onPress={() => navigation.navigate("Home")}
-        icon={require("../../../assets/google_icon.png")}
-      />
+        <CustomButton
+          title="Login with Google"
+          onPress={() => navigation.navigate("Home")}
+          icon={require("../../../assets/google_icon.png")}
+        />
 
-      <Text style={styles.text}>
-        If you do not have an account,{" "}
-        <Text style={styles.link} onPress={() => navigation.navigate("SignUp")}>
-          Sign Up
+        <Text style={styles.text}>
+          If you do not have an account,{" "}
+          <Text
+            style={styles.link}
+            onPress={() => navigation.navigate("SignUp")}
+          >
+            Sign Up
+          </Text>
         </Text>
-      </Text>
-    </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
@@ -65,6 +74,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
     textAlign: "center",
+    backgroundColor: "#F7F9FD",
   },
   input: {
     borderWidth: 1,
