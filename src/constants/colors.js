@@ -1,0 +1,10 @@
+export const COLORS = {
+  PRIMARY: "#EECD60",
+  SECONDARY: "#E77171",
+  BACKGROUND: "#F9F9FB",
+  SURFACE: "#FFFFFF",
+  ON_SURFACE: "#000000",
+  OUTLINE: "gray",
+  ON_ERROR_OUTLINE: "red",
+  ERROR: "#FF4D4D",
+};
